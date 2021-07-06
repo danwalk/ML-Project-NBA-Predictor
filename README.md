@@ -1,4 +1,3 @@
-# ML-Project-NBA-Predictor
-## Machine Learning Project | Bootcamp TheBridge
-### Is there a way to predict NBA teams points accuratly enough to win money over the course of a season?
-### The idea of this project is to use different regressors, using different parameters, to then simulate each game using the data available, estimate a points score being over or under the bookies prediction, to then analyse if enough predictions were successfully made to win a return. 
+# ML-BootcampProject-NBAPredictor-DanielWalker
+## Is it possible to use machine learning models to predict teams points totals accurately enough to win money over the course of a season?
+### The idea of this project is to use different regression models with different parameters, to then predict a teams points score being over or under the bookies prediction, simulate each game using the real result and to then finally analyse if enough predictions were successfully made to gain a return on the original investment.
