@@ -1,0 +1,37 @@
+Regressor,- all -,,,,,
+FormulaPrediction,- multiple -,,,,,
+,,,,,,
+,Data,System Result,,,,
+,Count - Column P,,Sum - Column P,,Total Count - Column P,Total Sum - Column P
+Team,Correct,Incorrect,Correct,Incorrect,,
+Atlanta Hawks,47,16,39.01,-16,63,23.01
+Boston Celtics,44,18,36.52,-18,62,18.52
+Brooklyn Nets,45,17,37.35,-17,62,20.35
+Charlotte Hornets,49,13,40.67,-13,62,27.67
+Chicago Bulls,48,14,39.84,-14,62,25.84
+Cleveland Cavaliers,49,13,40.67,-13,62,27.67
+Dallas Mavericks,42,21,34.86,-21,63,13.86
+Denver Nuggets,41,21,34.03,-21,62,13.03
+Detroit Pistons,43,18,35.69,-18,61,17.69
+Golden State Warriors,45,18,37.35,-18,63,19.35
+Houston Rockets,49,14,40.67,-14,63,26.67
+Indiana Pacers,49,14,40.67,-14,63,26.67
+Los Angeles Clippers,48,15,39.84,-15,63,24.84
+Los Angeles Lakers,40,23,33.2,-23,63,10.2
+Memphis Grizzlies,52,10,43.1599999999999,-10,62,33.16
+Miami Heat,42,21,34.86,-21,63,13.86
+Milwaukee Bucks,45,18,37.35,-18,63,19.35
+Minnesota Timberwolves,40,23,33.2,-23,63,10.2
+New Orleans Pelicans,46,17,38.18,-17,63,21.18
+New York Knicks,43,19,35.69,-19,62,16.69
+Oklahoma City Thunder,50,12,41.5,-12,62,29.5
+Orlando Magic,44,19,36.52,-19,63,17.52
+Philadelphia 76ers,47,16,39.01,-16,63,23.01
+Phoenix Suns,42,20,34.86,-20,62,14.86
+Portland Trail Blazers,43,19,35.69,-19,62,16.69
+Sacramento Kings,48,15,39.84,-15,63,24.84
+San Antonio Spurs,45,18,37.35,-18,63,19.35
+Toronto Raptors,41,20,34.03,-20,61,14.03
+Utah Jazz,48,15,39.84,-15,63,24.84
+Washington Wizards,43,19,35.69,-19,62,16.69
+Total Result,1358,516,1127.14000000001,-516,1874,611.140000000003
