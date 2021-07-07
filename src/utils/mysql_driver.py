@@ -75,3 +75,5 @@ class MySQL:
 
         sql = sql.replace("\n", "").replace("            ", " ")
         return sql
+
+        
