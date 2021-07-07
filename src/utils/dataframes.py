@@ -1,8 +1,9 @@
 import streamlit as st
-import pandas as pd 
+import pandas as pd
+import numpy as np
+import os
 from .folders_tb import openmodelresults
-from .sql_functions import modelresultstosql
-
+from .sql_tb import modelresultstosql
 
 '''
 def get_data_from_df(df):

@@ -23,11 +23,11 @@ from .folders_tb import opennbacsv
 
 def fitmodel(X, y, regressor, eon=5, savemodel=False):
     if regressor=="LinearRegression":
-        reg = LinearRegression()
+        reg = LinearRegression(n_jobs=-1)
     elif regressor=="RandomForestRegressor":
-        reg = RandomForestRegressor(n_estimators=100, random_state=1)
+        reg = RandomForestRegressor(n_estimators=eon, random_state=1)
     elif regressor=="DecisionTreeRegressor":
-        reg = DecisionTreeRegressor(max_depth=eon)
+        reg = DecisionTreeRegressor(criterion=eon)
     elif regressor=="RidgeCV":
         reg = RidgeCV()
     elif regressor=="GradientBoostingRegressor":
@@ -39,10 +39,9 @@ def fitmodel(X, y, regressor, eon=5, savemodel=False):
     elif regressor=="KNeighborsRegressor":
         reg = KNeighborsRegressor(n_neighbors=eon)
     elif regressor=="RadiusNeighborsRegressor":
-        reg = RadiusNeighborsRegressor()
+        reg = RadiusNeighborsRegressor(n_jobs=-1)
     else:
         reg = SVR(gamma=.1, kernel='rbf', C=1.0, epsilon=eon)
-    print(regressor)
     tree_preprocessor = ColumnTransformer(
     [
         ("categorical", OrdinalEncoder(),
@@ -72,8 +71,6 @@ def fitmodel(X, y, regressor, eon=5, savemodel=False):
     return model1
 
 def predictor(Team, predgamenumber, regressor="SVR", eon=5, savemodel=1):
-    if regressor == "RandomForestRegressor":
-        eon = 100
     if savemodel == 0:
         savemodel = True
     else:
@@ -174,6 +171,7 @@ def runfullseasonpredictor(regressorlist, eon):
         "FormulaPrediction", "RealScore", "SystemResult"]
     for regressor in regressors:
         count = 0
+        print(regressor)
         predresultsdf = pd.DataFrame(columns = columnnames)
         for team in teamlist:
             for i in games:
@@ -184,6 +182,3 @@ def runfullseasonpredictor(regressorlist, eon):
         appendnewresultstomodelresultscsvandsql(predresultsdf)
     return "Done"
 
-
-'''loaded_model = pickle.load(open(filename, 'rb'))
-result = loaded_model.score(X_test, Y_test)'''

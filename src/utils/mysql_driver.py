@@ -13,10 +13,10 @@ class MySQL:
     def connect(self):
         # Open database connection
         self.db = pymysql.connect(host=self.IP_DNS,
-                                  user=self.USER, 
-                                  password=self.PASSWORD, 
-                                  database=self.BD_NAME, 
-                                  port=self.PORT)
+                                user=self.USER, 
+                                password=self.PASSWORD, 
+                                database=self.BD_NAME, 
+                                port=self.PORT)
         # prepare a cursor object using cursor() method
         self.cursor = self.db.cursor()
         print("Connected to MySQL server [" + self.BD_NAME + "]")
@@ -56,24 +56,4 @@ class MySQL:
             print(error)
             print ("Error: unable to fetch data")
         
-        return results
-
-    def generate_insert_into_people_sql(self, to_insert):
-        """
-        This must be modified according to the table structure
-        """
-        nombre = to_insert[0]
-        apellidos = to_insert[1]
-        direccion = to_insert[2]
-        edad = to_insert[3]
-        nota = to_insert[4]
-        
-        sql = """INSERT INTO people
-            (MOMENTO, NOMBRE, APELLIDOS, DIRECCION, EDAD, NOTA)
-            VALUES
-            (NOW(), '""" + nombre + """', '""" + apellidos + """', '""" + direccion + """', '""" + edad + """', '""" + nota + """')"""
-
-        sql = sql.replace("\n", "").replace("            ", " ")
-        return sql
-
-        
+        return results       
