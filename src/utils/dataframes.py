@@ -94,3 +94,19 @@ def appendnewresultstomodelresultscsvandsql(predresultsdf):
     modelresults.to_csv(modelspath)
     modelresultstosql(modelresults)
     print("Appending done")
+
+def showtotalresultsforateam(team, predresultsdf):
+    modelresults = openmodelresults("modelresults.csv")
+    modelresults = modelresults.iloc[0:0]
+    to_append = appendresults(predresultsdf)
+    dflen = len(modelresults)
+    modelresults.loc[dflen] = to_append
+    to_append = appendonlyfirmresults(predresultsdf)
+    dflen = len(modelresults)
+    modelresults.loc[dflen] = to_append
+    SEP = os.sep
+    projectpath = os.path.dirname(os.getcwd())
+    modelspath = projectpath + SEP + "data" + SEP + team + ".csv"
+    modelresults.to_csv(modelspath)
+    print("Appending done")
+    return modelresults

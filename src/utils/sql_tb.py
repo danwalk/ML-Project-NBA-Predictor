@@ -48,3 +48,8 @@ def getpredictiontablefromsql():
     engine = createengine()
     df = pd.read_sql('SELECT * FROM prediction', con=engine)
     return df
+
+def getfullnbatablefromsql():
+    engine = createengine()
+    df = pd.read_sql('SELECT * FROM daniel_walker', con=engine)
+    return df
