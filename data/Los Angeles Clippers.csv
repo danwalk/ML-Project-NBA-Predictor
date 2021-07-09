@@ -1,3 +1,3 @@
 ,Regressor,EstimatorsorNeigbor,ContainsNotConclusivePred,Totalgames,GamesRemovedPred0,TotalCorrect,Correct,BetReturn,BetProfit,TotalOversPred,TotalOversCorrect,OversCorrect,OversBetReturn,OversProfit,TotalUndersPred,TotalUndersCorrect,UndersCorrect,UndersBetReturn,UndersProfit
-0,KNeighborsRegressor,5,True,63,0,42,66.67%,13.86,22.00%,30,24,80.00%,14.749999999999996,49.17%,29,16,55.17%,-0.8899999999999997,-3.07%
-1,KNeighborsRegressor,5,False,15,0,14,93.33%,10.62,70.80%,10,9,90.00%,6.47,64.70%,5,5,100.00%,4.1499999999999995,83.00%
+0,DecisionTreeRegressor,poisson,True,63,0,37,58.73%,4.71,7.48%,29,17,58.62%,2.9399999999999995,10.14%,27,15,55.56%,1.7699999999999991,6.56%
+1,DecisionTreeRegressor,poisson,False,16,0,12,75.00%,5.959999999999999,37.25%,9,6,66.67%,1.9799999999999995,22.00%,7,6,85.71%,3.98,56.86%

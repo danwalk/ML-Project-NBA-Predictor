@@ -15,10 +15,13 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn import linear_model
 import pickle
 import os
+from .dataframes import showtotalresultsforateam
 from .dataframes import systempredictionmaker
 from .dataframes import predictionmaker
 from .dataframes import appendnewresultstomodelresultscsvandsql
+from .dataframes import addtotalwinningscolumn
 from .folders_tb import opennbacsv
+from .dataframes import shortversionofresults
 
 
 
@@ -234,19 +237,41 @@ def gamepredictor(Team, predgamenumber, regressor="SVR", eon=5, savemodel=1):
     print("-----------------------------")
     return None
 
-def runteamseasonpredictor(team, regressor, eon, savemodel=1):
-    games = list(range(10,73))
-    columnnames= ["Date", "MarketPredicted", "Team", "GameNumber", "Regressor", "Estimatororneigbor", "BookiePrediction",
-        "TeamAvg10Games", "OpponentAvg10Games", "OpponentFormOver10Games", "ModelScorePrediction", "ModelResultPrediction", 
-        "FormulaPrediction", "RealScore", "SystemResult"]
-    predresultsdf = pd.DataFrame(columns = columnnames)
-    for i in games:
-        to_append = predictor(team, i, regressor, eon, savemodel)
-        dflen = len(predresultsdf)
-        predresultsdf.loc[dflen] = to_append
-    return predresultsdf
+def runteamseasonpredictor(Teamlist, regressor, eon=5, savemodel=1, returnsummary=False):
+    for team in Teamlist:
+        games = list(range(10,73))
+        columnnames= ["Date", "MarketPredicted", "Team", "GameNumber", "Regressor", "Estimatororneigbor", "BookiePrediction",
+            "TeamAvg10Games", "OpponentAvg10Games", "OpponentFormOver10Games", "ModelScorePrediction", "ModelResultPrediction", 
+            "FormulaPrediction", "RealScore", "SystemResult"]
+        predresultsdf = pd.DataFrame(columns = columnnames)
+        for i in games:
+            to_append = predictor(team, i, regressor, eon, savemodel)
+            dflen = len(predresultsdf)
+            predresultsdf.loc[dflen] = to_append
+        predresultsdf = addtotalwinningscolumn(predresultsdf, team, regressor)
+        SEP = os.sep
+        projectpath = os.path.dirname(os.getcwd())
+        modelspath = projectpath + SEP + "data" + SEP + team + "gamebygame" + ".csv"
+        predresultsdf.to_csv(modelspath)
+        short = showtotalresultsforateam(team, predresultsdf)
+        shortdf = shortversionofresults(short)
+        if returnsummary == True:
+            print(shortdf)
+    return "Done"
 
-def runfullseasonpredictor(regressorlist, eon):
+def multimodelcomparision(team, regressorlist):
+    for regressor in regressorlist:
+        if regressor == "DecisionTreeRegressor":
+            runteamseasonpredictor(team, regressor, eon="mse")
+        elif regressor == "RandomForestRegressor":
+            runteamseasonpredictor(team, regressor, eon=100)
+        elif regressor == "SVR":
+            runteamseasonpredictor(team, regressor, eon=0.15)
+        else:
+            runteamseasonpredictor(team, regressor)
+    return None
+
+def runfullseasonpredictor(regressorlist, eon, returnsummary=False):
     regressors = regressorlist
     estimatororneigbor = eon
     games = list(range(10,73))
@@ -259,7 +284,7 @@ def runfullseasonpredictor(regressorlist, eon):
         "TeamAvg10Games", "OpponentAvg10Games", "OpponentFormOver10Games", "ModelScorePrediction", "ModelResultPrediction", 
         "FormulaPrediction", "RealScore", "SystemResult"]
     for regressor in regressors:
-        count = 0
+        count = 0 # This is so that the first model is saved to MODELS file
         print(regressor)
         predresultsdf = pd.DataFrame(columns = columnnames)
         for team in teamlist:
@@ -268,6 +293,15 @@ def runfullseasonpredictor(regressorlist, eon):
                 count += 1
                 dflen = len(predresultsdf)
                 predresultsdf.loc[dflen] = to_append
+        predresultsdf = addtotalwinningscolumn(predresultsdf, "All Teams", regressor)
+        SEP = os.sep
+        projectpath = os.path.dirname(os.getcwd())
+        modelspath = projectpath + SEP + "data" + SEP + "All Teams" + "gamebygame" + ".csv"
+        predresultsdf.to_csv(modelspath)
+        short = showtotalresultsforateam("All Teams", predresultsdf)
+        shortdf = shortversionofresults(short)
+        if returnsummary == True:
+            print(shortdf)
         appendnewresultstomodelresultscsvandsql(predresultsdf)
     return "Done"
 

@@ -3,30 +3,25 @@ from PIL import Image
 import os, sys
 import pandas as pd
 import json
-import pymysql
-from sqlalchemy import create_engine
-
+#from utils.stream_config import draw_map
+#from utils.dataframes import load_csv
 
 # Haz que se pueda importar correctamente estas funciones que están en la carpeta utils/
 dir = os.path.dirname
-sep = os.sep
+SEP = os.sep
 src_path = dir(dir(os.path.abspath(__file__)))
 sys.path.append(src_path)
-
-from utils.stream_config import draw_map
-from utils.dataframes import load_csv
-
 project_path = dir(dir(dir(os.path.abspath(__file__))))
 sys.path.append(project_path)
 
 
 menu = st.sidebar.selectbox('Menu:',
-            options=["Home", "Team Stats", "Game Predictor", "API", "Australia Fire"])
+            options=["Welcome", "Team Stats", "Game Predictor", "API"])
 
-if menu == "Home":
+if menu == "Welcome":
     # Pon el título del proyecto que está en el archivo "config.json" en /config
 
-    config_json_path = project_path + sep + 'config' + sep + 'config.json'
+    config_json_path = project_path + SEP + 'config' + SEP + 'config.json'
 
     with open(config_json_path, "r") as config_json_readed:
         json_config = json.load(config_json_readed)
@@ -37,14 +32,13 @@ if menu == "Home":
     
 if menu == "Team Stats":
 
-    # Carga la imagen que está en data/img/happy.jpg
-    path_image_nba = project_path + sep + 'data' + sep + 'img' + sep + 'nba background.jpg'
+    path_image_nba = project_path + SEP + 'data' + SEP + 'img' + SEP + 'nba background.jpg'
     image = Image.open(path_image_nba)
     st.image (image,use_column_width=True)
 
 if menu == "Game Predictor":
     # El archivo que está en data/ con nombre 'red_recarga_acceso_publico_2021.csv'
-    nbacsv = project_path + sep + 'data' + sep + 'nbaclean.csv'
+    nbacsv = project_path + SEP + 'data' + SEP + 'nbaclean.csv'
     df_nba = pd.read_csv(nbacsv)
     st.dataframe(df_nba)
 

@@ -4,6 +4,7 @@ import numpy as np
 import os
 from .folders_tb import openmodelresults
 from .sql_tb import modelresultstosql
+from .visualization_tb import linegraphfunc
 
 '''
 def get_data_from_df(df):
@@ -110,3 +111,45 @@ def showtotalresultsforateam(team, predresultsdf):
     modelresults.to_csv(modelspath)
     print("Appending done")
     return modelresults
+
+
+def addtotalwinningscolumn(df, team, regressor):
+    df = df.sort_values(by="Date")
+    conditions = [df["GameNumber"] > 1,
+                df["GameNumber"] == 1]
+    values = [1, 1]            
+    df["Gamenumberfor%"] = np.select(conditions, values)
+    df['TotalGames'] = df['Gamenumberfor%'].cumsum()
+    conditions = [(df["SystemResult"] == "Correct"),
+                (df["SystemResult"] == "Incorrect")]
+    values = [0.83, -1]            
+    df["BetReturn"] = np.select(conditions, values)
+    df['RunningTotalAll'] = df['BetReturn'].cumsum()
+    df["BetReturn%"] = (df['RunningTotalAll']/(df['TotalGames']))*100
+    df['BetReturn%'] = df['BetReturn%'].apply(lambda x: float("{:.2f}".format(x)))
+    conditions = [df["FormulaPrediction"] == "Not conclusive",
+                (df["FormulaPrediction"] != "Not conclusive") & (df["SystemResult"] == "Correct"),
+                (df["FormulaPrediction"] != "Not conclusive") & (df["SystemResult"] == "Incorrect")]
+    values = [np.NaN, 0.83, -1]
+    df["BetReturnWithoutNC"] = np.select(conditions, values)
+    df['RunningTotalWithoutNC'] = df['BetReturnWithoutNC'].cumsum()
+    df['RunningTotalWithoutNC'] = df['RunningTotalWithoutNC'].fillna(method='ffill')
+    conditions = [df["FormulaPrediction"] == "Not conclusive",
+                df["FormulaPrediction"] != "Not conclusive"]
+    values = [0, 1]            
+    df["TotalConclusives"] = np.select(conditions, values)
+    df['TotalConclusiveGames'] = df['TotalConclusives'].cumsum()
+    df['TotalConclusiveGames'] = df['TotalConclusiveGames'].fillna(method='ffill')
+    df["BetReturnWithoutNC%"] = (df['RunningTotalWithoutNC']/(df['TotalConclusiveGames']))*100
+    df['BetReturnWithoutNC%'] = df['BetReturnWithoutNC%'].apply(lambda x: float("{:.2f}".format(x)))
+    df["Date"] = pd.to_datetime(df["Date"], format='%Y/%m/%d', errors = 'ignore')
+    df["BetReturn%"] = pd.to_numeric(df["BetReturn%"], downcast="float")
+    df["BetReturnWithoutNC%"] = pd.to_numeric(df["BetReturnWithoutNC%"], downcast="float")
+    linegraph = df[["Date", "BetReturn%", "BetReturnWithoutNC%"]]
+    linegraphfunc(linegraph, team, regressor)
+    return df
+
+
+def shortversionofresults(df):
+    newdf = df[["Regressor", "ContainsNotConclusivePred", "Totalgames", "TotalCorrect", "BetReturn", "BetProfit"]]
+    return newdf
