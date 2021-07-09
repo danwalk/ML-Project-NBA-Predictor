@@ -1,0 +1,64 @@
+,Date,MarketPredicted,Team,GameNumber,Regressor,Estimatororneigbor,BookiePrediction,TeamAvg10Games,OpponentAvg10Games,OpponentFormOver10Games,ModelScorePrediction,ModelResultPrediction,FormulaPrediction,RealScore,SystemResult,Gamenumberfor%,TotalGames,BetReturn,RunningTotalAll,BetReturn%,BetReturnWithoutNC,RunningTotalWithoutNC,TotalConclusives,TotalConclusiveGames,BetReturnWithoutNC%
+0,2021-01-12,TeamScore,Miami Heat,10,GradientBoostingRegressor,5,107,108.81,107.78,4.0,111.33,Over,Not conclusive,134,Correct,1,1,0.83,0.83,83.0,,,0,0,
+1,2021-01-14,TeamScore,Miami Heat,11,GradientBoostingRegressor,5,112,111.3,108.5,5.0,111.0,Under,Not conclusive,108,Correct,1,2,0.83,1.66,83.0,,,0,0,
+2,2021-01-16,TeamScore,Miami Heat,12,GradientBoostingRegressor,5,114,111.33,115.3,6.0,110.3,Under,Not conclusive,100,Correct,1,3,0.83,2.4899999999999998,83.0,,,0,0,
+3,2021-01-18,TeamScore,Miami Heat,13,GradientBoostingRegressor,5,112,110.25,112.5,5.0,110.5,Under,Not conclusive,113,Incorrect,1,4,-1.0,1.4899999999999998,37.25,,,0,0,
+4,2021-01-20,TeamScore,Miami Heat,14,GradientBoostingRegressor,5,111,111.99,110.7,6.0,111.9,Over,Not conclusive,111,Incorrect,1,5,-1.0,0.48999999999999977,9.8,,,0,0,
+5,2021-01-22,TeamScore,Miami Heat,15,GradientBoostingRegressor,5,111,110.81,113.5,7.0,108.1,Under,Not conclusive,81,Correct,1,6,0.83,1.3199999999999998,22.0,,,0,0,
+6,2021-01-23,TeamScore,Miami Heat,16,GradientBoostingRegressor,5,113,111.02,114.9,8.0,112.2,Under,Not conclusive,124,Incorrect,1,7,-1.0,0.31999999999999984,4.57,,,0,0,
+7,2021-01-25,TeamScore,Miami Heat,17,GradientBoostingRegressor,5,115,111.29,118.2,8.0,108.9,Under,Not conclusive,85,Correct,1,8,0.83,1.15,14.37,,,0,0,
+8,2021-01-27,TeamScore,Miami Heat,18,GradientBoostingRegressor,5,111,109.06,110.3,5.0,106.6,Under,Not conclusive,82,Correct,1,9,0.83,1.98,22.0,,,0,0,
+9,2021-01-28,TeamScore,Miami Heat,19,GradientBoostingRegressor,5,106,104.23,105.5,4.0,104.3,Under,Prediction is UNDER 106,105,Correct,1,10,0.83,2.81,28.1,0.83,0.83,1,1,83.0
+10,2021-01-30,TeamScore,Miami Heat,20,GradientBoostingRegressor,5,118,101.04,119.0,6.0,101.4,Under,Not conclusive,105,Correct,1,11,0.83,3.64,33.09,,0.83,0,1,83.0
+11,2021-02-01,TeamScore,Miami Heat,21,GradientBoostingRegressor,5,107,100.87,109.8,6.0,102.7,Under,Not conclusive,121,Incorrect,1,12,-1.0,2.64,22.0,,0.83,0,1,83.0
+12,2021-02-03,TeamScore,Miami Heat,22,GradientBoostingRegressor,5,114,102.97,118.8,6.0,102.7,Under,Not conclusive,100,Correct,1,13,0.83,3.47,26.69,,0.83,0,1,83.0
+13,2021-02-05,TeamScore,Miami Heat,23,GradientBoostingRegressor,5,114,101.76,120.4,6.0,103.6,Under,Not conclusive,122,Incorrect,1,14,-1.0,2.47,17.64,,0.83,0,1,83.0
+14,2021-02-07,TeamScore,Miami Heat,24,GradientBoostingRegressor,5,100,102.84,101.3,4.0,103.4,Over,Not conclusive,109,Correct,1,15,0.83,3.3000000000000003,22.0,,0.83,0,1,83.0
+15,2021-02-09,TeamScore,Miami Heat,25,GradientBoostingRegressor,5,101,105.81,103.7,4.0,105.1,Over,Not conclusive,98,Incorrect,1,16,-1.0,2.3000000000000003,14.38,,0.83,0,1,83.0
+16,2021-02-11,TeamScore,Miami Heat,26,GradientBoostingRegressor,5,104,102.98,107.5,4.0,102.8,Under,Not conclusive,101,Correct,1,17,0.83,3.1300000000000003,18.41,,0.83,0,1,83.0
+17,2021-02-13,TeamScore,Miami Heat,27,GradientBoostingRegressor,5,102,104.67,106.2,5.0,103.7,Over,Not conclusive,94,Incorrect,1,18,-1.0,2.1300000000000003,11.83,,0.83,0,1,83.0
+18,2021-02-15,TeamScore,Miami Heat,28,GradientBoostingRegressor,5,104,106.23,109.1,6.0,107.3,Over,Prediction is OVER 104,118,Correct,1,19,0.83,2.9600000000000004,15.58,0.83,1.66,1,2,83.0
+19,2021-02-17,TeamScore,Miami Heat,29,GradientBoostingRegressor,5,107,107.6,109.9,5.0,108.0,Over,Not conclusive,112,Correct,1,20,0.83,3.7900000000000005,18.95,,1.66,0,2,83.0
+20,2021-02-18,TeamScore,Miami Heat,30,GradientBoostingRegressor,5,115,108.43,118.6,6.0,109.3,Under,Not conclusive,118,Incorrect,1,21,-1.0,2.7900000000000005,13.29,,1.66,0,2,83.0
+21,2021-02-20,TeamScore,Miami Heat,31,GradientBoostingRegressor,5,101,107.88,108.1,6.0,106.8,Over,Prediction is OVER 101,96,Incorrect,1,22,-1.0,1.7900000000000005,8.14,-1.0,0.6599999999999999,1,3,22.0
+22,2021-02-22,TeamScore,Miami Heat,32,GradientBoostingRegressor,5,107,107.56,110.1,5.0,107.6,Over,Not conclusive,108,Correct,1,23,0.83,2.6200000000000006,11.39,,0.6599999999999999,0,3,22.0
+23,2021-02-24,TeamScore,Miami Heat,33,GradientBoostingRegressor,5,107,106.1,109.8,5.0,107.0,Over,Not conclusive,116,Correct,1,24,0.83,3.4500000000000006,14.38,,0.6599999999999999,0,3,22.0
+24,2021-02-26,TeamScore,Miami Heat,34,GradientBoostingRegressor,5,103,106.95,107.0,6.0,108.5,Over,Prediction is OVER 103,124,Correct,1,25,0.83,4.28,17.12,0.83,1.4899999999999998,1,4,37.25
+25,2021-02-28,TeamScore,Miami Heat,35,GradientBoostingRegressor,5,112,109.66,117.4,8.0,109.6,Under,Not conclusive,109,Correct,1,26,0.83,5.11,19.65,,1.4899999999999998,0,4,37.25
+26,2021-03-02,TeamScore,Miami Heat,36,GradientBoostingRegressor,5,112,110.25,112.9,7.0,107.5,Under,Not conclusive,80,Correct,1,27,0.83,5.94,22.0,,1.4899999999999998,0,4,37.25
+27,2021-03-04,TeamScore,Miami Heat,37,GradientBoostingRegressor,5,112,108.94,120.5,8.0,108.4,Under,Not conclusive,103,Correct,1,28,0.83,6.7700000000000005,24.18,,1.4899999999999998,0,4,37.25
+28,2021-03-11,TeamScore,Miami Heat,38,GradientBoostingRegressor,5,108,107.37,112.8,6.0,107.7,Under,Not conclusive,111,Incorrect,1,29,-1.0,5.7700000000000005,19.9,,1.4899999999999998,0,4,37.25
+29,2021-03-12,TeamScore,Miami Heat,39,GradientBoostingRegressor,5,110,107.16,111.3,4.0,106.6,Under,Not conclusive,101,Correct,1,30,0.83,6.6000000000000005,22.0,,1.4899999999999998,0,4,37.25
+30,2021-03-14,TeamScore,Miami Heat,40,GradientBoostingRegressor,5,107,105.3,113.6,6.0,105.0,Under,Not conclusive,102,Correct,1,31,0.83,7.430000000000001,23.97,,1.4899999999999998,0,4,37.25
+31,2021-03-16,TeamScore,Miami Heat,41,GradientBoostingRegressor,5,108,106.07,107.6,4.0,106.7,Under,Prediction is UNDER 108,113,Incorrect,1,32,-1.0,6.430000000000001,20.09,-1.0,0.48999999999999977,1,5,9.8
+32,2021-03-17,TeamScore,Miami Heat,42,GradientBoostingRegressor,5,104,106.34,111.4,6.0,104.4,Over,Prediction is OVER 104,85,Incorrect,1,33,-1.0,5.430000000000001,16.45,-1.0,-0.5100000000000002,1,6,-8.5
+33,2021-03-19,TeamScore,Miami Heat,43,GradientBoostingRegressor,5,108,103.18,117.1,6.0,103.8,Under,Not conclusive,110,Incorrect,1,34,-1.0,4.430000000000001,13.03,,-0.5100000000000002,0,6,-8.5
+34,2021-03-21,TeamScore,Miami Heat,44,GradientBoostingRegressor,5,110,101.6,115.2,6.0,102.0,Under,Not conclusive,106,Correct,1,35,0.83,5.260000000000001,15.03,,-0.5100000000000002,0,6,-8.5
+35,2021-03-23,TeamScore,Miami Heat,45,GradientBoostingRegressor,5,104,101.21,107.0,5.0,101.1,Under,Not conclusive,100,Correct,1,36,0.83,6.090000000000001,16.92,,-0.5100000000000002,0,6,-8.5
+36,2021-03-25,TeamScore,Miami Heat,46,GradientBoostingRegressor,5,112,103.63,117.3,7.0,105.3,Under,Not conclusive,122,Incorrect,1,37,-1.0,5.090000000000001,13.76,,-0.5100000000000002,0,6,-8.5
+37,2021-03-26,TeamScore,Miami Heat,47,GradientBoostingRegressor,5,109,105.55,109.4,4.0,105.5,Under,Not conclusive,105,Correct,1,38,0.83,5.920000000000001,15.58,,-0.5100000000000002,0,6,-8.5
+38,2021-03-29,TeamScore,Miami Heat,48,GradientBoostingRegressor,5,100,104.82,105.0,3.0,104.2,Over,Not conclusive,98,Incorrect,1,39,-1.0,4.920000000000001,12.62,,-0.5100000000000002,0,6,-8.5
+39,2021-03-31,TeamScore,Miami Heat,49,GradientBoostingRegressor,5,107,104.43,115.6,7.0,103.3,Under,Not conclusive,92,Correct,1,40,0.83,5.750000000000001,14.38,,-0.5100000000000002,0,6,-8.5
+40,2021-04-01,TeamScore,Miami Heat,50,GradientBoostingRegressor,5,111,103.57,115.7,5.0,104.7,Under,Not conclusive,116,Incorrect,1,41,-1.0,4.750000000000001,11.59,,-0.5100000000000002,0,6,-8.5
+41,2021-04-03,TeamScore,Miami Heat,51,GradientBoostingRegressor,5,107,103.89,107.8,4.0,104.9,Under,Not conclusive,115,Incorrect,1,42,-1.0,3.750000000000001,8.93,,-0.5100000000000002,0,6,-8.5
+42,2021-04-06,TeamScore,Miami Heat,52,GradientBoostingRegressor,5,107,107.16,116.2,7.0,107.6,Over,Prediction is OVER 107,112,Correct,1,43,0.83,4.580000000000001,10.65,0.83,0.31999999999999973,1,7,4.57
+43,2021-04-08,TeamScore,Miami Heat,53,GradientBoostingRegressor,5,101,107.36,104.8,4.0,107.6,Over,Not conclusive,110,Correct,1,44,0.83,5.410000000000001,12.3,,0.31999999999999973,0,7,4.57
+44,2021-04-11,TeamScore,Miami Heat,54,GradientBoostingRegressor,5,111,107.77,112.2,5.0,107.7,Under,Not conclusive,107,Correct,1,45,0.83,6.240000000000001,13.87,,0.31999999999999973,0,7,4.57
+45,2021-04-13,TeamScore,Miami Heat,55,GradientBoostingRegressor,5,103,108.33,109.4,7.0,106.3,Over,Prediction is OVER 103,86,Incorrect,1,46,-1.0,5.240000000000001,11.39,-1.0,-0.6800000000000003,1,8,-8.5
+46,2021-04-14,TeamScore,Miami Heat,56,GradientBoostingRegressor,5,105,104.57,106.1,5.0,104.7,Under,Not conclusive,106,Incorrect,1,47,-1.0,4.240000000000001,9.02,,-0.6800000000000003,0,8,-8.5
+47,2021-04-16,TeamScore,Miami Heat,57,GradientBoostingRegressor,5,112,104.73,122.1,7.0,105.3,Under,Not conclusive,111,Correct,1,48,0.83,5.070000000000001,10.56,,-0.6800000000000003,0,8,-8.5
+48,2021-04-18,TeamScore,Miami Heat,58,GradientBoostingRegressor,5,111,106.14,110.5,5.0,106.4,Under,Not conclusive,109,Correct,1,49,0.83,5.900000000000001,12.04,,-0.6800000000000003,0,8,-8.5
+49,2021-04-19,TeamScore,Miami Heat,59,GradientBoostingRegressor,5,111,108.05,120.8,9.0,108.5,Under,Not conclusive,113,Incorrect,1,50,-1.0,4.900000000000001,9.8,,-0.6800000000000003,0,8,-8.5
+50,2021-04-21,TeamScore,Miami Heat,60,GradientBoostingRegressor,5,106,107.66,104.4,4.0,107.6,Over,Not conclusive,107,Correct,1,51,0.83,5.730000000000001,11.24,,-0.6800000000000003,0,8,-8.5
+51,2021-04-23,TeamScore,Miami Heat,61,GradientBoostingRegressor,5,107,106.74,112.3,4.0,106.4,Under,Not conclusive,103,Correct,1,52,0.83,6.560000000000001,12.62,,-0.6800000000000003,0,8,-8.5
+52,2021-04-24,TeamScore,Miami Heat,62,GradientBoostingRegressor,5,109,105.78,107.5,4.0,105.8,Under,Prediction is UNDER 109,106,Correct,1,53,0.83,7.3900000000000015,13.94,0.83,0.1499999999999997,1,9,1.67
+53,2021-04-26,TeamScore,Miami Heat,63,GradientBoostingRegressor,5,109,105.3,106.7,4.0,105.0,Under,Prediction is UNDER 109,102,Correct,1,54,0.83,8.22,15.22,0.83,0.9799999999999996,1,10,9.8
+54,2021-04-28,TeamScore,Miami Heat,64,GradientBoostingRegressor,5,107,104.89,110.7,5.0,105.9,Under,Not conclusive,116,Incorrect,1,55,-1.0,7.220000000000001,13.13,,0.9799999999999996,0,10,9.8
+55,2021-05-01,TeamScore,Miami Heat,65,GradientBoostingRegressor,5,106,108.27,113.3,7.0,109.7,Over,Prediction is OVER 106,124,Correct,1,56,0.83,8.05,14.38,0.83,1.8099999999999996,1,11,16.45
+56,2021-05-02,TeamScore,Miami Heat,66,GradientBoostingRegressor,5,104,110.22,107.2,4.0,111.2,Over,Not conclusive,121,Correct,1,57,0.83,8.88,15.58,,1.8099999999999996,0,11,16.45
+57,2021-05-04,TeamScore,Miami Heat,67,GradientBoostingRegressor,5,105,111.24,109.8,5.0,111.4,Over,Not conclusive,113,Correct,1,58,0.83,9.71,16.74,,1.8099999999999996,0,11,16.45
+58,2021-05-07,TeamScore,Miami Heat,68,GradientBoostingRegressor,5,113,111.76,119.3,5.0,112.6,Under,Not conclusive,121,Incorrect,1,59,-1.0,8.71,14.76,,1.8099999999999996,0,11,16.45
+59,2021-05-09,TeamScore,Miami Heat,69,GradientBoostingRegressor,5,104,112.73,116.6,7.0,114.3,Over,Prediction is OVER 104,130,Correct,1,60,0.83,9.540000000000001,15.9,0.83,2.6399999999999997,1,12,22.0
+60,2021-05-11,TeamScore,Miami Heat,70,GradientBoostingRegressor,5,105,115.25,120.9,8.0,116.5,Over,Prediction is OVER 105,129,Correct,1,61,0.83,10.370000000000001,17.0,0.83,3.4699999999999998,1,13,26.69
+61,2021-05-13,TeamScore,Miami Heat,71,GradientBoostingRegressor,5,104,117.88,101.7,4.0,116.8,Over,Not conclusive,106,Correct,1,62,0.83,11.200000000000001,18.06,,3.4699999999999998,0,13,26.69
+62,2021-05-15,TeamScore,Miami Heat,72,GradientBoostingRegressor,5,109,117.9,122.9,6.0,117.0,Over,Prediction is OVER 109,108,Incorrect,1,63,-1.0,10.200000000000001,16.19,-1.0,2.4699999999999998,1,14,17.64

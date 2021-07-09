@@ -22,7 +22,8 @@ from .dataframes import appendnewresultstomodelresultscsvandsql
 from .dataframes import addtotalwinningscolumn
 from .folders_tb import opennbacsv
 from .dataframes import shortversionofresults
-
+from .visualization_tb import donutgraph
+from .dataframes import donutdfmaker
 
 
 def fitmodel(X, y, regressor, eon=5, savemodel=False):
@@ -238,6 +239,7 @@ def gamepredictor(Team, predgamenumber, regressor="SVR", eon=5, savemodel=1):
     return None
 
 def runteamseasonpredictor(Teamlist, regressor, eon=5, savemodel=1, returnsummary=False):
+    count = 0
     for team in Teamlist:
         games = list(range(10,73))
         columnnames= ["Date", "MarketPredicted", "Team", "GameNumber", "Regressor", "Estimatororneigbor", "BookiePrediction",
@@ -245,7 +247,8 @@ def runteamseasonpredictor(Teamlist, regressor, eon=5, savemodel=1, returnsummar
             "FormulaPrediction", "RealScore", "SystemResult"]
         predresultsdf = pd.DataFrame(columns = columnnames)
         for i in games:
-            to_append = predictor(team, i, regressor, eon, savemodel)
+            to_append = predictor(team, i, regressor, eon, count)
+            count += 1
             dflen = len(predresultsdf)
             predresultsdf.loc[dflen] = to_append
         predresultsdf = addtotalwinningscolumn(predresultsdf, team, regressor)
@@ -253,27 +256,28 @@ def runteamseasonpredictor(Teamlist, regressor, eon=5, savemodel=1, returnsummar
         projectpath = os.path.dirname(os.getcwd())
         modelspath = projectpath + SEP + "data" + SEP + team + "gamebygame" + ".csv"
         predresultsdf.to_csv(modelspath)
-        short = showtotalresultsforateam(team, predresultsdf)
+        short = showtotalresultsforateam(team, predresultsdf, regressor)
+        newdf = donutdfmaker(short)
+        donutgraph(newdf, team, regressor)
         shortdf = shortversionofresults(short)
         if returnsummary == True:
             print(shortdf)
     return "Done"
 
-def multimodelcomparision(team, regressorlist):
+def multimodelcomparision(team, regressorlist, eon=5, returnsummary=True):
     for regressor in regressorlist:
         if regressor == "DecisionTreeRegressor":
-            runteamseasonpredictor(team, regressor, eon="mse")
+            runteamseasonpredictor(team, regressor, eon="mse", savemodel= 0, returnsummary=True)
         elif regressor == "RandomForestRegressor":
-            runteamseasonpredictor(team, regressor, eon=100)
+            runteamseasonpredictor(team, regressor, eon=100, savemodel= 0, returnsummary=True)
         elif regressor == "SVR":
-            runteamseasonpredictor(team, regressor, eon=0.15)
+            runteamseasonpredictor(team, regressor, eon=0.15, savemodel= 0, returnsummary=True)
         else:
-            runteamseasonpredictor(team, regressor)
+            runteamseasonpredictor(team, regressor, eon, savemodel= 0, returnsummary=True)
     return None
 
 def runfullseasonpredictor(regressorlist, eon, returnsummary=False):
     regressors = regressorlist
-    estimatororneigbor = eon
     games = list(range(10,73))
     teamlist = ["Atlanta Hawks","Boston Celtics","Brooklyn Nets","Charlotte Hornets","Chicago Bulls","Cleveland Cavaliers",
         "Dallas Mavericks","Denver Nuggets","Detroit Pistons","Golden State Warriors","Houston Rockets","Indiana Pacers",
@@ -284,24 +288,34 @@ def runfullseasonpredictor(regressorlist, eon, returnsummary=False):
         "TeamAvg10Games", "OpponentAvg10Games", "OpponentFormOver10Games", "ModelScorePrediction", "ModelResultPrediction", 
         "FormulaPrediction", "RealScore", "SystemResult"]
     for regressor in regressors:
+        if regressor == "DecisionTreeRegressor":
+            eon="mse"
+        elif regressor == "RandomForestRegressor":
+            eon= 80
+        elif regressor == "SVR":
+            eon= 0.16
+        else:
+            eon=5
         count = 0 # This is so that the first model is saved to MODELS file
         print(regressor)
         predresultsdf = pd.DataFrame(columns = columnnames)
         for team in teamlist:
             for i in games:
-                to_append = predictor(team, i, regressor, estimatororneigbor, count)
+                to_append = predictor(team, i, regressor, eon, count)
                 count += 1
                 dflen = len(predresultsdf)
                 predresultsdf.loc[dflen] = to_append
         predresultsdf = addtotalwinningscolumn(predresultsdf, "All Teams", regressor)
         SEP = os.sep
         projectpath = os.path.dirname(os.getcwd())
-        modelspath = projectpath + SEP + "data" + SEP + "All Teams" + "gamebygame" + ".csv"
+        modelspath = projectpath + SEP + "data" + SEP + "All Teams" + "_" + regressor + "gamebygame" + ".csv"
         predresultsdf.to_csv(modelspath)
-        short = showtotalresultsforateam("All Teams", predresultsdf)
+        short = showtotalresultsforateam("All Teams", predresultsdf, regressor)
         shortdf = shortversionofresults(short)
         if returnsummary == True:
             print(shortdf)
         appendnewresultstomodelresultscsvandsql(predresultsdf)
-    return "Done"
+        newdf = donutdfmaker(short)
+        donutgraph(newdf, "All Teams", regressor)
+    return "Completed"
 

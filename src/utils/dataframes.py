@@ -96,7 +96,8 @@ def appendnewresultstomodelresultscsvandsql(predresultsdf):
     modelresultstosql(modelresults)
     print("Appending done")
 
-def showtotalresultsforateam(team, predresultsdf):
+
+def showtotalresultsforateam(team, predresultsdf, regressor):
     modelresults = openmodelresults("modelresults.csv")
     modelresults = modelresults.iloc[0:0]
     to_append = appendresults(predresultsdf)
@@ -107,9 +108,9 @@ def showtotalresultsforateam(team, predresultsdf):
     modelresults.loc[dflen] = to_append
     SEP = os.sep
     projectpath = os.path.dirname(os.getcwd())
-    modelspath = projectpath + SEP + "data" + SEP + team + ".csv"
+    modelspath = projectpath + SEP + "data" + SEP + team + "_" + regressor + "_" + ".csv"
     modelresults.to_csv(modelspath)
-    print("Appending done")
+    print("CSV Saved")
     return modelresults
 
 
@@ -152,4 +153,16 @@ def addtotalwinningscolumn(df, team, regressor):
 
 def shortversionofresults(df):
     newdf = df[["Regressor", "ContainsNotConclusivePred", "Totalgames", "TotalCorrect", "BetReturn", "BetProfit"]]
+    return newdf
+
+
+def donutdfmaker(df):
+    newdf = df[["ContainsNotConclusivePred", "Correct", "BetProfit"]]
+    newdf = newdf.rename(columns={"ContainsNotConclusivePred": "Scenario"})
+    conditions = [newdf["Scenario"] == True,
+                newdf["Scenario"] == False]
+    values = ["All Predictions", "Conclusive Predictions"]            
+    newdf["Scenario"] = np.select(conditions, values)
+    new_row = {'Scenario':'Break Even', 'Correct':"55.00%"}
+    newdf = newdf.append(new_row, ignore_index=True)
     return newdf

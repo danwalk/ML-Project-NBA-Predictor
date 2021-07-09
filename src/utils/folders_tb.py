@@ -29,7 +29,8 @@ def opennbacsv(filename):
 
 def openmodelresults(filename):
     SEP = os.sep
-    projectpath = os.path.dirname(os.getcwd())
-    modelres = projectpath + SEP + "data" + SEP + filename
+    project_path = dir(dir(dir(os.path.abspath(__file__))))
+    print(project_path)
+    modelres = project_path + "data" + SEP + filename
     modelresults = pd.read_csv(modelres, index_col=0)
     return modelresults
