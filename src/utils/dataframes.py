@@ -1,36 +1,22 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import os
-from .folders_tb import openmodelresults
-from .sql_tb import modelresultstosql
-from .visualization_tb import linegraphfunc
+import os, sys
 
-'''
-def get_data_from_df(df):
-    
-    selected_values = df.iloc[:10,:].values
-    
-    return str(selected_values)
+dir = os.path.dirname
+SEP = os.sep
+src = dir(dir(os.path.abspath(__file__)))
+sys.path.append(src)
+project_path = dir(dir(dir(os.path.abspath(__file__))))
+sys.path.append(project_path)
 
-@st.cache(suppress_st_warning=True)
-def load_csv_df(uploaded_file):
-    df = None
-    if uploaded_file != None:
-        #uploaded_file.seek(0)
-        df = pd.read_csv(uploaded_file, nrows=200)
-        #st.write("csv Readed¡")
-    st.balloons()
-    return df
+from utils.folders_tb import openmodelresults
+from utils.sql_tb import modelresultstosql
+from utils.visualization_tb import linegraphfunc
+from utils.visualization_tb import modelresultsbargraph
+from utils.dashboard_tb import modelshort
 
-@st.cache(suppress_st_warning=True)
-def load_csv(csv_path):
-    if csv_path != None:
-        df = pd.read_csv(csv_path, sep=';')
-        #df = df.rename(columns={'latidtud': 'lat', 'longitud': 'lon'})
-    st.balloons()
-    return df
-'''
+
 def systempredictionmaker(bookies, systempred):
     if bookies > systempred:
         return "Under"
@@ -81,6 +67,7 @@ def appendonlyfirmresults(df):
     y = appendresults(x)
     return y
 
+    
 def appendnewresultstomodelresultscsvandsql(predresultsdf):
     modelresults = openmodelresults("modelresults.csv")
     to_append = appendresults(predresultsdf)
@@ -90,12 +77,13 @@ def appendnewresultstomodelresultscsvandsql(predresultsdf):
     dflen = len(modelresults)
     modelresults.loc[dflen] = to_append
     SEP = os.sep
-    projectpath = os.path.dirname(os.getcwd())
+    dir = os.path.dirname
+    projectpath = dir(dir(dir(os.path.abspath(__file__))))
     modelspath = projectpath + SEP + "data" + SEP + "modelresults.csv"
     modelresults.to_csv(modelspath)
     modelresultstosql(modelresults)
+    modelshort(modelresults)
     print("Appending done")
-
 
 def showtotalresultsforateam(team, predresultsdf, regressor):
     modelresults = openmodelresults("modelresults.csv")
@@ -107,7 +95,8 @@ def showtotalresultsforateam(team, predresultsdf, regressor):
     dflen = len(modelresults)
     modelresults.loc[dflen] = to_append
     SEP = os.sep
-    projectpath = os.path.dirname(os.getcwd())
+    dir = os.path.dirname
+    projectpath = dir(dir(dir(os.path.abspath(__file__))))
     modelspath = projectpath + SEP + "data" + SEP + team + "_" + regressor + "_" + ".csv"
     modelresults.to_csv(modelspath)
     print("CSV Saved")
@@ -146,6 +135,7 @@ def addtotalwinningscolumn(df, team, regressor):
     df["Date"] = pd.to_datetime(df["Date"], format='%Y/%m/%d', errors = 'ignore')
     df["BetReturn%"] = pd.to_numeric(df["BetReturn%"], downcast="float")
     df["BetReturnWithoutNC%"] = pd.to_numeric(df["BetReturnWithoutNC%"], downcast="float")
+    df = df[df['BookiePrediction'] != 0]
     linegraph = df[["Date", "BetReturn%", "BetReturnWithoutNC%"]]
     linegraphfunc(linegraph, team, regressor)
     return df

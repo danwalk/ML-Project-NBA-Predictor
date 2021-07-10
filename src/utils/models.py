@@ -14,16 +14,24 @@ from sklearn.svm import SVR
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn import linear_model
 import pickle
-import os
-from .dataframes import showtotalresultsforateam
-from .dataframes import systempredictionmaker
-from .dataframes import predictionmaker
-from .dataframes import appendnewresultstomodelresultscsvandsql
-from .dataframes import addtotalwinningscolumn
-from .folders_tb import opennbacsv
-from .dataframes import shortversionofresults
-from .visualization_tb import donutgraph
-from .dataframes import donutdfmaker
+import os, sys
+
+dir = os.path.dirname
+SEP = os.sep
+src = dir(dir(os.path.abspath(__file__)))
+sys.path.append(src)
+project_path = dir(dir(dir(os.path.abspath(__file__))))
+sys.path.append(project_path)
+
+from utils.dataframes import showtotalresultsforateam
+from utils.dataframes import systempredictionmaker
+from utils.dataframes import predictionmaker
+from utils.dataframes import appendnewresultstomodelresultscsvandsql
+from utils.dataframes import addtotalwinningscolumn
+from utils.folders_tb import opennbacsv
+from utils.dataframes import shortversionofresults
+from utils.visualization_tb import donutgraph
+from utils.dataframes import donutdfmaker
 
 
 def fitmodel(X, y, regressor, eon=5, savemodel=False):
@@ -66,7 +74,8 @@ def fitmodel(X, y, regressor, eon=5, savemodel=False):
     model1 = model.fit(X, y)
     if savemodel == True:
         SEP = os.sep
-        projectpath = os.path.dirname(os.getcwd())
+        dir = os.path.dirname
+        projectpath = dir(dir(dir(os.path.abspath(__file__))))
         modelspath = projectpath + SEP + "models"
         finalizedmodel = regressor + str(eon)
         pathandname = modelspath + SEP + finalizedmodel
@@ -217,17 +226,24 @@ def gamepredictor(Team, predgamenumber, regressor="SVR", eon=5, savemodel=1):
     print(f'{Team} in game {predgamenumber} vs {oppo}')
     print("-----------------------------")
     print(f'Bookies predicted points for {Team} is: {Bookie}')
+    print("-----------------------------")
     print(f'{Team} last 10 games scoring Avg is: {last10gamesscoring}')
+    print("-----------------------------")
     print(f'Over the previous 10 games {oppo} receiving Avg is: {opponentlast10games}')
+    print("-----------------------------")
     print(f'In {oppo} previous 10 games, {opponentform} of their games have gone over the bookies prediction')
+    print("-----------------------------")
     systemprediction = float("{:.2f}".format(model.predict(x)[-1]))
     print("SYSTEM PREDICTED score: ", systemprediction)
+    print("-----------------------------")
     VariablePrediction = predictionmaker(Bookie, last10gamesscoring, opponentlast10games, opponentform, systemprediction)
     print(f'Using the variable prediction, the programs recommendation is: {VariablePrediction}')
+    print("-----------------------------")
     SystemStraightPrediction = systempredictionmaker(Bookie, systemprediction)
     print(f'The SYSTEMS STRAIGHT PREDICTION is: {SystemStraightPrediction} the bookies prediction')
     print("-----------------------------")
     print("Final Score (Real): ", realscore)
+    print("-----------------------------")
     if SystemStraightPrediction == "Over" and realscore > Bookie:
         SystemPred = "Correct"
     elif SystemStraightPrediction == "Under" and realscore < Bookie:
@@ -253,7 +269,8 @@ def runteamseasonpredictor(Teamlist, regressor, eon=5, savemodel=1, returnsummar
             predresultsdf.loc[dflen] = to_append
         predresultsdf = addtotalwinningscolumn(predresultsdf, team, regressor)
         SEP = os.sep
-        projectpath = os.path.dirname(os.getcwd())
+        dir = os.path.dirname
+        projectpath = dir(dir(dir(os.path.abspath(__file__))))
         modelspath = projectpath + SEP + "data" + SEP + team + "gamebygame" + ".csv"
         predresultsdf.to_csv(modelspath)
         short = showtotalresultsforateam(team, predresultsdf, regressor)
@@ -264,7 +281,7 @@ def runteamseasonpredictor(Teamlist, regressor, eon=5, savemodel=1, returnsummar
             print(shortdf)
     return "Done"
 
-def multimodelcomparision(team, regressorlist, eon=5, returnsummary=True):
+def multimodelcomparision(team, regressorlist, eon=5):
     for regressor in regressorlist:
         if regressor == "DecisionTreeRegressor":
             runteamseasonpredictor(team, regressor, eon="mse", savemodel= 0, returnsummary=True)
@@ -274,9 +291,10 @@ def multimodelcomparision(team, regressorlist, eon=5, returnsummary=True):
             runteamseasonpredictor(team, regressor, eon=0.15, savemodel= 0, returnsummary=True)
         else:
             runteamseasonpredictor(team, regressor, eon, savemodel= 0, returnsummary=True)
-    return None
+    return "Done"
 
-def runfullseasonpredictor(regressorlist, eon, returnsummary=False):
+
+def runfullseasonpredictor(regressorlist, eon, returnsummary=False, fromstreamlit=False):
     regressors = regressorlist
     games = list(range(10,73))
     teamlist = ["Atlanta Hawks","Boston Celtics","Brooklyn Nets","Charlotte Hornets","Chicago Bulls","Cleveland Cavaliers",
@@ -289,11 +307,13 @@ def runfullseasonpredictor(regressorlist, eon, returnsummary=False):
         "FormulaPrediction", "RealScore", "SystemResult"]
     for regressor in regressors:
         if regressor == "DecisionTreeRegressor":
-            eon="mse"
+            eon= eon
         elif regressor == "RandomForestRegressor":
-            eon= 80
+            eon= eon
         elif regressor == "SVR":
-            eon= 0.16
+            eon= eon
+        elif regressor == "KNeighborsRegressor":
+            eon= eon
         else:
             eon=5
         count = 0 # This is so that the first model is saved to MODELS file
@@ -307,7 +327,8 @@ def runfullseasonpredictor(regressorlist, eon, returnsummary=False):
                 predresultsdf.loc[dflen] = to_append
         predresultsdf = addtotalwinningscolumn(predresultsdf, "All Teams", regressor)
         SEP = os.sep
-        projectpath = os.path.dirname(os.getcwd())
+        dir = os.path.dirname
+        projectpath = dir(dir(dir(os.path.abspath(__file__))))
         modelspath = projectpath + SEP + "data" + SEP + "All Teams" + "_" + regressor + "gamebygame" + ".csv"
         predresultsdf.to_csv(modelspath)
         short = showtotalresultsforateam("All Teams", predresultsdf, regressor)
@@ -315,7 +336,9 @@ def runfullseasonpredictor(regressorlist, eon, returnsummary=False):
         if returnsummary == True:
             print(shortdf)
         appendnewresultstomodelresultscsvandsql(predresultsdf)
-        newdf = donutdfmaker(short)
-        donutgraph(newdf, "All Teams", regressor)
+        if fromstreamlit == True:
+            return "Completed"
+        else:
+            newdf = donutdfmaker(short)
+            donutgraph(newdf, "All Teams", regressor)
     return "Completed"
-

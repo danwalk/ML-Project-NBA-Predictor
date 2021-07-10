@@ -3,25 +3,67 @@ from PIL import Image
 import os, sys
 import pandas as pd
 import json
-from src.utils.dataframes import shortversionofresults
-from src.utils.models import gamepredictor
-#from utils.stream_config import draw_map
-#from utils.dataframes import load_csv
 
-# Haz que se pueda importar correctamente estas funciones que están en la carpeta utils/
+
 dir = os.path.dirname
 SEP = os.sep
-src_path = dir(dir(os.path.abspath(__file__)))
-sys.path.append(src_path)
+src = dir(dir(os.path.abspath(__file__)))
+sys.path.append(src)
 project_path = dir(dir(dir(os.path.abspath(__file__))))
 sys.path.append(project_path)
 
+from src.utils.dataframes import shortversionofresults
+from src.utils.models import gamepredictor
+from src.utils.models import runfullseasonpredictor
+from src.utils.sql_tb import getpredictiontablefromsql
+
+from streamlit.report_thread import REPORT_CONTEXT_ATTR_NAME
+from threading import current_thread
+from contextlib import contextmanager
+from io import StringIO
+import sys
+
+
+@contextmanager
+def st_redirect(src, dst):
+    placeholder = st.empty()
+    output_func = getattr(placeholder, dst)
+
+    with StringIO() as buffer:
+        old_write = src.write
+
+        def new_write(b):
+            if getattr(current_thread(), REPORT_CONTEXT_ATTR_NAME, None):
+                buffer.write(b + '')
+                output_func(buffer.getvalue() + '')
+            else:
+                old_write(b)
+
+        try:
+            src.write = new_write
+            yield
+        finally:
+            src.write = old_write
+
+
+@contextmanager
+def st_stdout(dst):
+    "this will show the prints"
+    with st_redirect(sys.stdout, dst):
+        yield
+
+
+@contextmanager
+def st_stderr(dst):
+    "This will show the logging"
+    with st_redirect(sys.stderr, dst):
+        yield
+
 
 menu = st.sidebar.selectbox('Menu:',
-            options=["Welcome", "Visualization", "Model Prediction", "Team Stats", "Game Predictor", "API"])
+            options=["Welcome", "Visualization", "Json API-Flask", "Model Prediction", "All Team Season Generator", "Models From SQL Database"])
 
 if menu == "Welcome":
-    # Pon el título del proyecto que está en el archivo "config.json" en /config
 
     config_json_path = project_path + SEP + "src" + SEP + "utils" + SEP + 'config.json'
 
@@ -67,45 +109,74 @@ if menu == "Visualization":
             shortdf = shortversionofresults(teamcsv1)
             st.table(shortdf)
 
-
 if menu == "Model Prediction":
-    teamlist = ["Select", "Atlanta Hawks", "Charlotte Hornets", "Denver Nuggets", "Golden State Warriors", "Indiana Pacers",
-        "Los Angeles Lakers", "Miami Heat","Milwaukee Bucks", "Phoenix Suns", "Utah Jazz"]
+    teamlist = ["Select", "Atlanta Hawks","Boston Celtics","Brooklyn Nets","Charlotte Hornets","Chicago Bulls","Cleveland Cavaliers",
+        "Dallas Mavericks","Denver Nuggets","Detroit Pistons","Golden State Warriors","Houston Rockets","Indiana Pacers",
+        "Los Angeles Clippers","Los Angeles Lakers","Memphis Grizzlies","Miami Heat","Milwaukee Bucks","Minnesota Timberwolves",
+        "New Orleans Pelicans","New York Knicks","Oklahoma City Thunder","Orlando Magic","Philadelphia 76ers","Phoenix Suns",
+        "Portland Trail Blazers","Sacramento Kings","San Antonio Spurs","Toronto Raptors","Utah Jazz","Washington Wizards"]
     reglist = ["Select", "BayesianRidge", "DecisionTreeRegressor", "GaussianProcessRegressor", "GradientBoostingRegressor",
         "KNeighborsRegressor", "LinearRegression", "RadiusNeighborsRegressor", "RandomForestRegressor", "RidgeCV", "SVR"]
     team = st.selectbox('Choose Team', teamlist)
     regressor = st.selectbox('Choose Regressor', reglist)
     if regressor == "DecisionTreeRegressor":
-        eon = st.selectbox('Choose Team', ["mse", "mae", "poisson", "friedman_mse"])
+        eon = st.selectbox('Choose Criterion', ["mse", "mae", "poisson", "friedman_mse"])
     elif regressor == "RandomForestRegressor":
         eon = st.slider("Select Estimators", min_value=50, max_value=200)
+    elif regressor == "KNeighborsRegressor":
+        eon = st.slider("Select Neighbors", min_value=3, max_value=8)
     elif regressor == "SVR":
         eon = st.slider("Select epsilon", min_value=0.1, max_value=0.25)
     else:
         eon = 5
-    Gamenumber = st.slider(f'Select {team} game to predict with regressor {regressor}', min_value=10, max_value=72)
-    if team != "Select" and regressor != "Select" and Gamenumber != 9 :
-        gamepredictor(team, Gamenumber, regressor, eon)
+    Gamenumber = st.slider(f'Select {team} game to predict with {regressor}', min_value=10, max_value=72)
+    if st.button(f'Click to see predictions for {team} in game {Gamenumber} using {regressor} regressor'):
+        if __name__ == '__main__':
+            with st_stdout("success"), st_stderr("code"):
+                gamepredictor(team, Gamenumber, regressor, eon)
 
 if menu == "Json API-Flask":
-    # Accede al único endpoint de tu API flask y lo muestra por pantalla como tabla/dataframe
-    st.title('Dataset')
-    dataframe_nba = pd.read_json('http://localhost:6060/nbaclean')
-    st.table(dataframe_nba)
+    st.title('Starting Dataset')
+    if st.checkbox('Click to GET json from flask ---- which receives from mysql!!!'):
+        dataframe_nba = pd.read_json('http://127.0.0.1:6060/nbadata?token_id=X9808164K')
+        st.table(dataframe_nba)
 
 
-if menu == "Australia Fire":
-    """6"""
-    st.title("Fire Table")
+if menu == "Models From SQL Database":
+    st.title("Overall Model Results")
+    x = getpredictiontablefromsql()
+    if st.checkbox('Click to convert table to Bar Graph'):
+        image3 = project_path + SEP + 'resources' + SEP + 'ModelBarGraph.jpg'
+        image3 = Image.open(image3)
+        st.image (image3,use_column_width=False)
+    if st.checkbox('Click to sort by highest Bet Return %'):
+        x = getpredictiontablefromsql(True)
+        st.table(x)
+    else:
+        st.table(x)
     
 
-    # 1. Conecta a la BBDD
-    # 2. Obtén, a partir de sentencias SQL (no pandas), la información de las tablas que empiezan por 'fire_archive*' (join)
-    # 3. Entrena tres modelos de ML diferentes siendo el target la columna 'fire_type'. Utiliza un pipeline que preprocese los datos con PCA. Usa Gridsearch.  
-    # 4. Añade una entrada en la tabla 'student_findings' por cada uno de los tres modelos. 'student_id' es EL-ID-DE-TU-GRUPO.
-    # 5. Obtén la información de la tabla 'fire_nrt_M6_96619' y utiliza el mejor modelo para predecir la columna target de esos datos. 
-    # 6. Usando SQL (no pandas) añade una columna nueva en la tabla 'fire_nrt_M6_96619' con el nombre 'fire_type_EL-ID-DE-TU-GRUPO'
-    # 7. Muestra por pantalla en Streamlit la tabla completa (X e y)
-    
 
+if menu == "All Team Season Generator":
+    reglist = ["Select", "BayesianRidge", "DecisionTreeRegressor", "GaussianProcessRegressor", "GradientBoostingRegressor",
+        "KNeighborsRegressor", "LinearRegression", "RadiusNeighborsRegressor", "RandomForestRegressor", "RidgeCV", "SVR"]
+    regressor = st.selectbox('Choose Regressor', reglist)
+    if regressor == "DecisionTreeRegressor":
+        eon = st.selectbox('Choose Criterion', ["mse", "mae", "poisson", "friedman_mse"])
+    elif regressor == "RandomForestRegressor":
+        eon = st.slider("Select Estimators", min_value=10, max_value=200)
+    elif regressor == "KNeighborsRegressor":
+        eon = st.slider("Select Neighbors", min_value=3, max_value=8)
+    elif regressor == "SVR":
+        eon = st.slider("Select epsilon", min_value=0.1, max_value=0.25)
+    else:
+        eon = 5
+    reg = [regressor]
+    if st.button(f'Click to simulate the full season using {regressor} regressor'):
+        if __name__ == '__main__':
+            with st_stdout("success"):
+                runfullseasonpredictor(reg, eon, returnsummary=False, fromstreamlit=True)
+                imagepath = project_path + SEP + 'resources' + SEP + "All Teams" + "_" + regressor + ".jpg"
+                image = Image.open(imagepath)
+                st.image (image,use_column_width=False)
 

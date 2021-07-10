@@ -19,8 +19,9 @@ def read_json_to_dict(json_fullpath):
 
 def opennbacsv(filename):
     SEP = os.sep
-    projectpath = os.path.dirname(os.getcwd())
-    nba_all = projectpath + SEP + "data" + SEP + filename
+    dir = os.path.dirname
+    project_path = dir(dir(dir(os.path.abspath(__file__))))
+    nba_all = project_path + SEP + "data" + SEP + filename
     nba = pd.read_csv(nba_all)
     nba['Teamwinpred'] = nba['Teamwinpred'].str.rstrip('%').astype('float') / 100.0
     nba['Opponentwinpred'] = nba['Opponentwinpred'].str.rstrip('%').astype('float') / 100.0
@@ -29,8 +30,8 @@ def opennbacsv(filename):
 
 def openmodelresults(filename):
     SEP = os.sep
+    dir = os.path.dirname
     project_path = dir(dir(dir(os.path.abspath(__file__))))
-    print(project_path)
-    modelres = project_path + "data" + SEP + filename
+    modelres = project_path + SEP + "data" + SEP + filename
     modelresults = pd.read_csv(modelres, index_col=0)
     return modelresults

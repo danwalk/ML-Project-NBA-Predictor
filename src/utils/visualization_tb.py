@@ -3,6 +3,9 @@ import matplotlib.dates as mdates
 import os
 import pandas as pd
 import re
+import numpy as np
+import seaborn as sns
+from matplotlib.pyplot import figure
 
 def linegraphfunc(df, team, regressor):
     plt.figure(figsize=(10,5))
@@ -23,17 +26,20 @@ def linegraphfunc(df, team, regressor):
     plt.legend()
     plt.title(Title1)
     SEP = os.sep
-    projectpath = os.path.dirname(os.getcwd())
+    dir = os.path.dirname
+    projectpath = dir(dir(dir(os.path.abspath(__file__))))
     imagepath = projectpath + SEP + "resources" + SEP + team + "_" + regressor + ".jpg"
     plt.savefig(imagepath)
     plt.show()
     print("Line Graph Saved")
+    return "Line Graph Ok"
+
+
 
 def donutgraph(df, team, regressor):
-    data = df
-    print(data.head())
-    startingRadius = 0.7 + (0.3* (len(data)-1))
-    for index, row in data.iterrows():
+    print(df.head())
+    startingRadius = 0.7 + (0.3* (len(df)-1))
+    for index, row in df.iterrows():
         scenario = row["Scenario"]
         percentage = row["Correct"]
         textLabel = scenario + ' ' + percentage
@@ -56,8 +62,30 @@ def donutgraph(df, team, regressor):
     Title1 = team + " " + regressor + " Win % from bets"
     plt.title(Title1)
     SEP = os.sep
-    projectpath = os.path.dirname(os.getcwd())
+    dir = os.path.dirname
+    projectpath = dir(dir(dir(os.path.abspath(__file__))))
     imagepath = projectpath + SEP + "resources" + SEP + team + "_betdonut_" + regressor + ".jpg"
     plt.savefig(imagepath)
     plt.show()
     print("Donut Saved")
+    return "Donut Graph Ok"
+
+def modelresultsbargraph(df):
+    figure(figsize=(8, 6), dpi=80)
+    df["modeon"] = df["Model"] + df["Param"].astype(str)
+    df = df.replace({'Bet Type': {1: "All Bets", 
+                                0: "Conclusive Bets"}})
+    sns.set_style("darkgrid")
+    ax = sns.barplot(x="Profit%", y="modeon", hue="Bet Type", data=df)
+    plt.ylabel("Model + Param")
+    plt.title("Model vs % Profit - Comparison")
+    SEP = os.sep
+    dir = os.path.dirname
+    projectpath = dir(dir(dir(os.path.abspath(__file__))))
+    imagepath = projectpath + SEP + "resources" + SEP + "ModelBarGraph.jpg"
+    plt.legend(bbox_to_anchor=(1.01, 1),
+            borderaxespad=0)
+    plt.tight_layout()
+    plt.savefig(imagepath)
+    plt.show()
+    return "Model Graph Saved"

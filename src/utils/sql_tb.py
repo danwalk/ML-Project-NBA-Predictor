@@ -6,12 +6,23 @@ import pymysql
 from getpass import getpass
 from mysql.connector import connect, Error
 import numpy as np
-from .folders_tb import read_json_to_dict
-from .mysql_driver import MySQL
+
+dir = os.path.dirname
+SEP = os.sep
+src = dir(dir(os.path.abspath(__file__)))
+sys.path.append(src)
+project_path = dir(dir(dir(os.path.abspath(__file__))))
+sys.path.append(project_path)
+
+from utils.folders_tb import read_json_to_dict
+from utils.mysql_driver import MySQL
+from utils.dashboard_tb import modelshort
+
 
 def createengine():
     SEP = os.sep
-    projectpath = os.path.dirname(os.getcwd())
+    dir = os.path.dirname
+    projectpath = dir(dir(dir(os.path.abspath(__file__))))
     json_fullpath = projectpath + SEP + "src" + SEP + "utils" + SEP + "sql_server_settings.json"
     json_readed = read_json_to_dict(json_fullpath)
     IP_DNS = json_readed["IP_DNS"]
@@ -22,9 +33,11 @@ def createengine():
     engine = create_engine(f'mysql+pymysql://{USER}:{PASSWORD}@{IP_DNS}:{PORT}/{BD_NAME}')
     return engine
 
+
 def nbacleantomysql(csvname):
     SEP = os.sep
-    projectpath = os.path.dirname(os.getcwd())
+    dir = os.path.dirname
+    projectpath = dir(dir(dir(os.path.abspath(__file__))))
     csv_fullpath = projectpath + SEP + "data" + SEP + csvname
     engine = createengine()
     NBA = pd.read_csv(csv_fullpath, index_col=None)
@@ -44,9 +57,11 @@ def modelresultstosql(modelresults):
     print(f'Model result appended to prediction table in database')
     return "Done"
 
-def getpredictiontablefromsql():
+def getpredictiontablefromsql(sortedresults=False):
     engine = createengine()
     df = pd.read_sql('SELECT * FROM prediction', con=engine)
+    if sortedresults == True:
+        df = modelshort(df)
     return df
 
 def getfullnbatablefromsql():

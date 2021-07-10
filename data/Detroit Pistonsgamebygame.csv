@@ -1,0 +1,64 @@
+,Date,MarketPredicted,Team,GameNumber,Regressor,Estimatororneigbor,BookiePrediction,TeamAvg10Games,OpponentAvg10Games,OpponentFormOver10Games,ModelScorePrediction,ModelResultPrediction,FormulaPrediction,RealScore,SystemResult,Gamenumberfor%,TotalGames,BetReturn,RunningTotalAll,BetReturn%,BetReturnWithoutNC,RunningTotalWithoutNC,TotalConclusives,TotalConclusiveGames,BetReturnWithoutNC%
+0,2021-01-08,TeamScore,Detroit Pistons,10,KNeighborsRegressor,5,102,111.48,103.22,3.0,105.87,Over,Not conclusive,110,Correct,1,1,0.83,0.83,83.0,,,0,0,
+1,2021-01-10,TeamScore,Detroit Pistons,11,KNeighborsRegressor,5,111,111.08,108.6,4.0,111.96,Over,Not conclusive,86,Incorrect,1,2,-1.0,-0.17000000000000004,-8.5,,,0,0,
+2,2021-01-13,TeamScore,Detroit Pistons,12,KNeighborsRegressor,5,113,109.58,109.1,5.0,110.96,Under,Not conclusive,101,Correct,1,3,0.83,0.6599999999999999,22.0,,,0,0,
+3,2021-01-16,TeamScore,Detroit Pistons,13,KNeighborsRegressor,5,108,107.79,115.5,5.0,108.18,Over,Not conclusive,120,Correct,1,4,0.83,1.4899999999999998,37.25,,,0,0,
+4,2021-01-18,TeamScore,Detroit Pistons,14,KNeighborsRegressor,5,109,107.66,111.3,4.0,111.72,Over,Not conclusive,107,Incorrect,1,5,-1.0,0.48999999999999977,9.8,,,0,0,
+5,2021-01-20,TeamScore,Detroit Pistons,15,KNeighborsRegressor,5,109,107.85,105.4,4.0,112.1,Over,Not conclusive,115,Correct,1,6,0.83,1.3199999999999998,22.0,,,0,0,
+6,2021-01-22,TeamScore,Detroit Pistons,16,KNeighborsRegressor,5,111,109.81,109.3,4.0,112.22,Over,Not conclusive,102,Incorrect,1,7,-1.0,0.31999999999999984,4.57,,,0,0,
+7,2021-01-23,TeamScore,Detroit Pistons,17,KNeighborsRegressor,5,109,107.91,115.3,5.0,112.02,Over,Not conclusive,110,Correct,1,8,0.83,1.15,14.37,,,0,0,
+8,2021-01-25,TeamScore,Detroit Pistons,18,KNeighborsRegressor,5,108,107.45,116.2,6.0,111.1,Over,Not conclusive,119,Correct,1,9,0.83,1.98,22.0,,,0,0,
+9,2021-01-27,TeamScore,Detroit Pistons,19,KNeighborsRegressor,5,107,107.77,112.2,7.0,110.74,Over,Prediction is OVER 107,107,Incorrect,1,10,-1.0,0.98,9.8,-1.0,-1.0,1,1,-100.0
+10,2021-01-28,TeamScore,Detroit Pistons,20,KNeighborsRegressor,5,104,107.44,103.7,4.0,110.08,Over,Not conclusive,107,Correct,1,11,0.83,1.81,16.45,,-1.0,0,1,-100.0
+11,2021-01-30,TeamScore,Detroit Pistons,21,KNeighborsRegressor,5,110,109.59,110.0,4.0,112.78,Over,Not conclusive,91,Incorrect,1,12,-1.0,0.81,6.75,,-1.0,0,1,-100.0
+12,2021-02-02,TeamScore,Detroit Pistons,22,KNeighborsRegressor,5,104,108.63,105.7,4.0,112.86,Over,Not conclusive,105,Correct,1,13,0.83,1.6400000000000001,12.62,,-1.0,0,1,-100.0
+13,2021-02-05,TeamScore,Detroit Pistons,23,KNeighborsRegressor,5,105,106.85,106.7,4.0,109.3,Over,Not conclusive,92,Incorrect,1,14,-1.0,0.6400000000000001,4.57,,-1.0,0,1,-100.0
+14,2021-02-06,TeamScore,Detroit Pistons,24,KNeighborsRegressor,5,102,105.57,101.5,4.0,108.74,Over,Not conclusive,129,Correct,1,15,0.83,1.4700000000000002,9.8,,-1.0,0,1,-100.0
+15,2021-02-09,TeamScore,Detroit Pistons,25,KNeighborsRegressor,5,116,107.04,124.9,9.0,109.88,Under,Not conclusive,122,Incorrect,1,16,-1.0,0.4700000000000002,2.94,,-1.0,0,1,-100.0
+16,2021-02-11,TeamScore,Detroit Pistons,26,KNeighborsRegressor,5,112,108.97,112.1,5.0,106.54,Under,Not conclusive,95,Correct,1,17,0.83,1.3000000000000003,7.65,,-1.0,0,1,-100.0
+17,2021-02-12,TeamScore,Detroit Pistons,27,KNeighborsRegressor,5,0,107.45,108.4,6.0,98.5,Over,Prediction is OVER 0,108,Correct,1,18,0.83,2.1300000000000003,11.83,0.83,-0.17000000000000004,1,2,-8.5
+18,2021-02-14,TeamScore,Detroit Pistons,28,KNeighborsRegressor,5,0,106.39,117.6,5.0,104.38,Over,Not conclusive,123,Correct,1,19,0.83,2.9600000000000004,15.58,,-0.17000000000000004,0,2,-8.5
+19,2021-02-17,TeamScore,Detroit Pistons,29,KNeighborsRegressor,5,0,107.94,109.6,5.0,103.88,Over,Not conclusive,102,Correct,1,20,0.83,3.7900000000000005,18.95,,-0.17000000000000004,0,2,-8.5
+20,2021-02-19,TeamScore,Detroit Pistons,30,KNeighborsRegressor,5,109,107.32,113.4,6.0,110.84,Over,Not conclusive,95,Incorrect,1,21,-1.0,2.7900000000000005,13.29,,-0.17000000000000004,0,2,-8.5
+21,2021-02-21,TeamScore,Detroit Pistons,31,KNeighborsRegressor,5,109,107.77,112.2,5.0,98.74,Under,Not conclusive,96,Correct,1,22,0.83,3.6200000000000006,16.45,,-0.17000000000000004,0,2,-8.5
+22,2021-02-23,TeamScore,Detroit Pistons,32,KNeighborsRegressor,5,109,106.87,110.3,4.0,96.94,Under,Not conclusive,105,Correct,1,23,0.83,4.45,19.35,,-0.17000000000000004,0,2,-8.5
+23,2021-02-24,TeamScore,Detroit Pistons,33,KNeighborsRegressor,5,112,108.43,122.9,8.0,100.06,Under,Not conclusive,118,Incorrect,1,24,-1.0,3.45,14.38,,-0.17000000000000004,0,2,-8.5
+24,2021-02-26,TeamScore,Detroit Pistons,34,KNeighborsRegressor,5,116,107.11,124.4,9.0,99.62,Under,Not conclusive,107,Correct,1,25,0.83,4.28,17.12,,-0.17000000000000004,0,2,-8.5
+25,2021-02-28,TeamScore,Detroit Pistons,35,KNeighborsRegressor,5,104,105.29,105.7,6.0,98.98,Under,Not conclusive,90,Correct,1,26,0.83,5.11,19.65,,-0.17000000000000004,0,2,-8.5
+26,2021-03-03,TeamScore,Detroit Pistons,36,KNeighborsRegressor,5,0,105.13,109.4,5.0,98.66,Over,Not conclusive,129,Correct,1,27,0.83,5.94,22.0,,-0.17000000000000004,0,2,-8.5
+27,2021-03-04,TeamScore,Detroit Pistons,37,KNeighborsRegressor,5,0,107.19,105.9,6.0,99.98,Over,Prediction is OVER 0,104,Correct,1,28,0.83,6.7700000000000005,24.18,0.83,0.6599999999999999,1,3,22.0
+28,2021-03-11,TeamScore,Detroit Pistons,38,KNeighborsRegressor,5,109,105.08,116.2,6.0,104.96,Under,Not conclusive,102,Correct,1,29,0.83,7.6000000000000005,26.21,,0.6599999999999999,0,3,22.0
+29,2021-03-13,TeamScore,Detroit Pistons,39,KNeighborsRegressor,5,113,105.01,111.6,3.0,100.42,Under,Prediction is UNDER 113,95,Correct,1,30,0.83,8.43,28.1,0.83,1.4899999999999998,1,4,37.25
+30,2021-03-15,TeamScore,Detroit Pistons,40,KNeighborsRegressor,5,107,105.05,107.8,6.0,99.5,Under,Not conclusive,99,Correct,1,31,0.83,9.26,29.87,,1.4899999999999998,0,4,37.25
+31,2021-03-17,TeamScore,Detroit Pistons,41,KNeighborsRegressor,5,108,105.55,116.9,8.0,100.5,Under,Not conclusive,116,Incorrect,1,32,-1.0,8.26,25.81,,1.4899999999999998,0,4,37.25
+32,2021-03-19,TeamScore,Detroit Pistons,42,KNeighborsRegressor,5,109,106.73,119.3,7.0,101.06,Under,Not conclusive,113,Incorrect,1,33,-1.0,7.26,22.0,,1.4899999999999998,0,4,37.25
+33,2021-03-21,TeamScore,Detroit Pistons,43,KNeighborsRegressor,5,111,105.91,111.0,5.0,101.62,Under,Not conclusive,86,Correct,1,34,0.83,8.09,23.79,,1.4899999999999998,0,4,37.25
+34,2021-03-24,TeamScore,Detroit Pistons,44,KNeighborsRegressor,5,108,103.85,115.2,6.0,101.7,Under,Not conclusive,111,Incorrect,1,35,-1.0,7.09,20.26,,1.4899999999999998,0,4,37.25
+35,2021-03-26,TeamScore,Detroit Pistons,45,KNeighborsRegressor,5,113,106.16,111.2,3.0,106.32,Under,Prediction is UNDER 113,111,Correct,1,36,0.83,7.92,22.0,0.83,2.32,1,5,46.4
+36,2021-03-27,TeamScore,Detroit Pistons,46,KNeighborsRegressor,5,115,103.99,119.4,6.0,105.58,Under,Not conclusive,92,Correct,1,37,0.83,8.75,23.65,,2.32,0,5,46.4
+37,2021-03-29,TeamScore,Detroit Pistons,47,KNeighborsRegressor,5,107,102.93,115.4,7.0,105.86,Under,Not conclusive,118,Incorrect,1,38,-1.0,7.75,20.39,,2.32,0,5,46.4
+38,2021-03-31,TeamScore,Detroit Pistons,48,KNeighborsRegressor,5,112,104.52,114.3,6.0,112.04,Over,Not conclusive,101,Incorrect,1,39,-1.0,6.75,17.31,,2.32,0,5,46.4
+39,2021-04-01,TeamScore,Detroit Pistons,49,KNeighborsRegressor,5,115,105.37,115.2,4.0,108.54,Under,Not conclusive,120,Incorrect,1,40,-1.0,5.75,14.37,,2.32,0,5,46.4
+40,2021-04-03,TeamScore,Detroit Pistons,50,KNeighborsRegressor,5,102,107.29,102.0,2.0,109.98,Over,Not conclusive,81,Incorrect,1,41,-1.0,4.75,11.59,,2.32,0,5,46.4
+41,2021-04-05,TeamScore,Detroit Pistons,51,KNeighborsRegressor,5,108,103.95,119.3,8.0,109.9,Over,Not conclusive,132,Correct,1,42,0.83,5.58,13.29,,2.32,0,5,46.4
+42,2021-04-06,TeamScore,Detroit Pistons,52,KNeighborsRegressor,5,105,105.91,107.0,4.0,109.62,Over,Not conclusive,119,Correct,1,43,0.83,6.41,14.91,,2.32,0,5,46.4
+43,2021-04-08,TeamScore,Detroit Pistons,53,KNeighborsRegressor,5,112,109.48,113.8,6.0,110.16,Under,Not conclusive,113,Incorrect,1,44,-1.0,5.41,12.3,,2.32,0,5,46.4
+44,2021-04-10,TeamScore,Detroit Pistons,54,KNeighborsRegressor,5,111,109.6,112.2,5.0,110.4,Under,Not conclusive,103,Correct,1,45,0.83,6.24,13.87,,2.32,0,5,46.4
+45,2021-04-11,TeamScore,Detroit Pistons,55,KNeighborsRegressor,5,103,108.93,102.1,4.0,109.06,Over,Not conclusive,124,Correct,1,46,0.83,7.07,15.37,,2.32,0,5,46.4
+46,2021-04-14,TeamScore,Detroit Pistons,56,KNeighborsRegressor,5,105,112.19,104.4,5.0,109.18,Over,Not conclusive,98,Incorrect,1,47,-1.0,6.07,12.91,,2.32,0,5,46.4
+47,2021-04-16,TeamScore,Detroit Pistons,57,KNeighborsRegressor,5,111,110.11,123.0,7.0,109.42,Under,Not conclusive,110,Correct,1,48,0.83,6.9,14.38,,2.32,0,5,46.4
+48,2021-04-17,TeamScore,Detroit Pistons,58,KNeighborsRegressor,5,114,111.0,112.3,2.0,111.2,Under,Prediction is UNDER 114,100,Correct,1,49,0.83,7.73,15.78,0.83,3.15,1,6,52.5
+49,2021-04-19,TeamScore,Detroit Pistons,59,KNeighborsRegressor,5,107,108.89,109.8,5.0,103.98,Under,Not conclusive,109,Incorrect,1,50,-1.0,6.73,13.46,,3.15,0,6,52.5
+50,2021-04-21,TeamScore,Detroit Pistons,60,KNeighborsRegressor,5,105,112.05,110.6,7.0,109.5,Over,Prediction is OVER 105,117,Correct,1,51,0.83,7.5600000000000005,14.82,0.83,3.98,1,7,56.86
+51,2021-04-22,TeamScore,Detroit Pistons,61,KNeighborsRegressor,5,107,110.14,106.6,4.0,106.08,Under,Not conclusive,91,Correct,1,52,0.83,8.39,16.13,,3.98,0,7,56.86
+52,2021-04-24,TeamScore,Detroit Pistons,62,KNeighborsRegressor,5,109,107.24,120.2,9.0,108.48,Under,Not conclusive,109,Incorrect,1,53,-1.0,7.390000000000001,13.94,,3.98,0,7,56.86
+53,2021-04-26,TeamScore,Detroit Pistons,63,KNeighborsRegressor,5,107,106.71,108.9,3.0,105.62,Under,Not conclusive,100,Correct,1,54,0.83,8.22,15.22,,3.98,0,7,56.86
+54,2021-04-29,TeamScore,Detroit Pistons,64,KNeighborsRegressor,5,106,106.43,111.6,7.0,106.86,Over,Prediction is OVER 106,105,Incorrect,1,55,-1.0,7.220000000000001,13.13,-1.0,2.98,1,8,37.25
+55,2021-05-01,TeamScore,Detroit Pistons,65,KNeighborsRegressor,5,104,104.23,110.3,5.0,107.26,Over,Not conclusive,94,Incorrect,1,56,-1.0,6.220000000000001,11.11,,2.98,0,8,37.25
+56,2021-05-03,TeamScore,Detroit Pistons,66,KNeighborsRegressor,5,108,103.97,113.8,6.0,107.54,Under,Not conclusive,112,Incorrect,1,57,-1.0,5.220000000000001,9.16,,2.98,0,8,37.25
+57,2021-05-04,TeamScore,Detroit Pistons,67,KNeighborsRegressor,5,105,104.06,109.1,5.0,104.12,Under,Not conclusive,99,Correct,1,58,0.83,6.050000000000001,10.43,,2.98,0,8,37.25
+58,2021-05-06,TeamScore,Detroit Pistons,68,KNeighborsRegressor,5,108,104.07,114.1,7.0,107.94,Under,Not conclusive,111,Incorrect,1,59,-1.0,5.050000000000001,8.56,,2.98,0,8,37.25
+59,2021-05-08,TeamScore,Detroit Pistons,69,KNeighborsRegressor,5,103,104.22,106.4,5.0,105.64,Over,Not conclusive,104,Correct,1,60,0.83,5.880000000000001,9.8,,2.98,0,8,37.25
+60,2021-05-09,TeamScore,Detroit Pistons,70,KNeighborsRegressor,5,107,102.71,105.2,1.0,106.22,Under,Prediction is UNDER 107,96,Correct,1,61,0.83,6.710000000000001,11.0,0.83,3.81,1,9,42.33
+61,2021-05-11,TeamScore,Detroit Pistons,71,KNeighborsRegressor,5,113,103.3,113.1,3.0,106.4,Under,Not conclusive,100,Correct,1,62,0.83,7.540000000000001,12.16,,3.81,0,9,42.33
+62,2021-05-14,TeamScore,Detroit Pistons,72,KNeighborsRegressor,5,105,102.22,107.5,5.0,104.24,Under,Not conclusive,91,Correct,1,63,0.83,8.370000000000001,13.29,,3.81,0,9,42.33
