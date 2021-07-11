@@ -1,0 +1,11 @@
+{
+    "project_name" : "ML-BootcampProject-NBAPredictor",
+    "author" : "Daniel Jonathan Walker",
+    "linkedin" : "https://www.linkedin.com/in/daniel-jonathan-walker-2a5a461b5",
+    "e_mail" : "danielwalker87@hotmail.com",
+    "project_title" : "ML-BootcampProject-NBAPredictor",
+    "project_description" : "This project is to determine if using different regression models with different parameters, we can predict a teams points score being over or under the bookies prediction. Then by simulating each game using the real results we can analyse if enough predictions were successfully made to gain a return on the original investment.",
+    "flask_port" : 6060,
+    "streamlit_port" : 8501,
+    "links" : "https://github.com/danwalk/ML-Project-NBA-Predictor, https://public.tableau.com/profile/api/publish/ComparisonLeaguesWINStraight/Story1"
+}

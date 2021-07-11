@@ -61,7 +61,7 @@ def st_stderr(dst):
 
 
 menu = st.sidebar.selectbox('Menu:',
-            options=["Welcome", "Visualization", "Json API-Flask", "Model Prediction", "All Team Season Generator", "Models From SQL Database"])
+            options=["Welcome", "Visualization", "Json API-Flask", "Model Prediction", "Feature Heatmap", "All Team Season Generator", "Models From SQL Database"])
 
 if menu == "Welcome":
 
@@ -180,3 +180,10 @@ if menu == "All Team Season Generator":
                 image = Image.open(imagepath)
                 st.image (image,use_column_width=False)
 
+if menu == "Feature Heatmap":
+    st.header("Feature Heatmap Of The Columns Used To Fit Prediction Models")
+    st.subheader("This is the heatmap of one of the predictions made. Depending on the team, their form, the teams form that they have played, the team they are playing, the correlation between columns will change.")
+    if st.checkbox('Click to see Heatmap'):
+        image = project_path + SEP + 'data' + SEP + "img" + SEP + 'PredictionHeatMap.jpg'
+        image = Image.open(image)
+        st.image (image,use_column_width=False)

@@ -1,0 +1,11 @@
+,Homeoraway,Favourite,OpponentFormReceivedLast10Games,Teamodds,Totalscorepred,Teamwinpred,Teamscorepred,Opponentscorepred,Teamscore,Totalscorereal,Totalfrompred,Scoredfrompred,OpponentAvgRealReceived10games,OpponentAvgPredReceived10games,OpponentAvgDifReceivedRealvsPred10games,OpponentReceivedOorULast10Games
+411,Home,NotFavourite,FormIsReceivingOver,2.19,220,0.53,111,109,112.0,236.0,16,1.0,119.8,110.8,9.0,9.0
+445,Home,Favourite,FormIsReceivingOver,1.51,219,0.75,114,105,120.0,238.0,19,6.0,111.6,110.9,0.7,7.0
+472,Home,Favourite,FormIsReceivingOver,1.55,223,0.51,112,111,102.0,209.0,-14,-10.0,112.3,111.3,1.0,5.0
+491,Home,Favourite,FormIsReceivingOver,1.75,223,0.51,112,111,129.0,243.0,20,17.0,112.3,111.3,1.0,5.0
+503,Away,Favourite,FormIsReceivingOver,1.69,220,0.53,111,109,116.0,222.0,2,5.0,117.2,110.0,7.2,8.0
+535,Away,Favourite,FormIsReceivingOver,1.61,220,0.53,111,109,105.0,213.0,-7,-6.0,117.2,110.0,7.2,8.0
+576,Home,Favourite,FormIsReceivingUnder,1.69,225,0.49,112,113,110.0,229.0,4,-2.0,109.6,110.5,-0.9,4.0
+605,Home,Favourite,FormIsReceivingOver,1.54,221,0.51,111,110,134.0,250.0,29,23.0,119.2,109.6,9.6,8.0
+611,Away,NotFavourite,FormIsReceivingOver,4.26,234,0.34,114,120,110.0,240.0,6,-4.0,113.8,111.8,2.0,5.0
+652,Home,Favourite,FormIsReceivingOver,1.82,227,0.62,116,111,115.1,223.2,-7,-3.5,114.9,113.4,1.5,5.0

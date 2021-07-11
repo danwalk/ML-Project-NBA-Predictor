@@ -218,6 +218,15 @@ def gamepredictor(Team, predgamenumber, regressor="SVR", eon=5, savemodel=1):
             x["OpponentFormReceivedLast10Games"].iloc[i] = "FormIsReceivingOver"
         else:
             x["OpponentFormReceivedLast10Games"].iloc[i] = "FormIsReceivingUnder"
+    SEP = os.sep
+    dir = os.path.dirname
+    projectpath = dir(dir(dir(os.path.abspath(__file__))))
+    modelspath = projectpath + SEP + "data" + SEP + "dfusedtofitmodel.csv"
+    gh = x[["Homeoraway", "Favourite", "OpponentFormReceivedLast10Games", "Teamodds", "Totalscorepred", "Teamwinpred", "Teamscorepred", "Opponentscorepred",
+            "Teamscore", "Totalscorereal", "Totalfrompred", "Scoredfrompred",
+            "OpponentAvgRealReceived10games", "OpponentAvgPredReceived10games",
+            "OpponentAvgDifReceivedRealvsPred10games", "OpponentReceivedOorULast10Games"]]
+    gh.to_csv(modelspath)
     model = fitmodel(x, x["Teamscore"], regressor, eon=eon, savemodel=savemodel)
     Bookie = x["Teamscorepred"].iloc[-1]
     last10gamesscoring = float("{:.2f}".format(x["Teamscore"].mean()))
