@@ -21,7 +21,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-x", type=int, help="the password")
 args = vars(parser.parse_args())
 
-if args["x"] == "daniel":
+if args["x"] != "daniel":
     print("Wrong password")
 else:
     app = Flask(__name__)
@@ -30,7 +30,6 @@ else:
     def home():
         """ Default path """
         return app.send_static_file('greet.html')
-        return "Great, this is working!"
 
     @app.route("/greet")
     def greet():
@@ -47,16 +46,13 @@ else:
             return "That token ID is not correct"
 
     def main():
-        # Get the settings fullpath
         settings_file = project_path + SEP + "src" + SEP + "utils" + SEP + 'flask_settings.json'
 
-        # Load json from file 
         with open(settings_file, "r") as json_file_readed:
             json_readed = json.load(json_file_readed)
 
 
         json_readed = read_json_to_dict(settings_file)
-        # Load variables from jsons
         SERVER_RUNNING = json_readed["server_running"]
 
         if SERVER_RUNNING:
