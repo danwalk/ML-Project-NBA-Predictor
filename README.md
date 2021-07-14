@@ -8,6 +8,6 @@
 
 ![alt text](https://github.com/danwalk/ML-Project-NBA-Predictor/blob/main/resources/ModelBarGraph.jpg?raw=true)
 
-![alt text](https://github.com/danwalk/ML-Project-NBA-Predictor/blob/main/resources/All%Teams_betdonut_DecisionTreeRegressor.jpg?raw=true)
+![alt text](https://github.com/danwalk/ML-Project-NBA-Predictor/blob/main/resources/All%20Teams_betdonut_DecisionTreeRegressor.jpg?raw=true)
 
-![alt text](https://github.com/danwalk/ML-Project-NBA-Predictor/blob/main/resources/All%Teams_RandomForestRegressor.jpg?raw=true)
+![alt text](https://github.com/danwalk/ML-Project-NBA-Predictor/blob/main/resources/All%20Teams_RandomForestRegressor.jpg?raw=true)
